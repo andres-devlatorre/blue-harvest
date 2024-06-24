@@ -1,0 +1,2 @@
+class Livechat < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_25_183441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
     t.boolean "authorization"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "participant1_id", null: false
+    t.bigint "participant2_id", null: false
+    t.string "status"
+    t.index ["participant1_id"], name: "index_livechats_on_participant1_id"
+    t.index ["participant2_id"], name: "index_livechats_on_participant2_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -84,6 +89,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
   add_foreign_key "calls", "users", column: "listener_id"
   add_foreign_key "calls", "users", column: "speaker_id"
   add_foreign_key "journals", "users"
+  add_foreign_key "livechats", "users", column: "participant1_id"
+  add_foreign_key "livechats", "users", column: "participant2_id"
   add_foreign_key "messages", "forums", column: "livechat_id"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "forums"

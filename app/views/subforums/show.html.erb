@@ -1,0 +1,7 @@
+<%= @subforum.name %>
+<%= @subforum.description  %>
+<%= link_to "Back to Subforums", subforums_path %>
+<%= link_to "Edit SubForum", edit_subforum_path  %>
+<%= link_to "Delete SubForum", subforum_path(@subforum), data: {
+  turbo_method: :delete, turbo_confirm: "Are you sure?"
+} %>

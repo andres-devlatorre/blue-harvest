@@ -1,0 +1,3 @@
+<% @posts.each do |post|  %>
+  <%= link_to post.tile, subforum_post_path(post.subforum, post)  %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_25_191026) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_26_195400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,10 +70,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_191026) do
     t.string "title"
     t.text "content"
     t.bigint "user_id", null: false
-    t.bigint "forum_id", null: false
+    t.bigint "subforum_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["forum_id"], name: "index_posts_on_forum_id"
+    t.index ["subforum_id"], name: "index_posts_on_subforum_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -105,6 +105,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_191026) do
   add_foreign_key "journals", "users"
   add_foreign_key "messages", "forums", column: "livechat_id"
   add_foreign_key "messages", "users"
-  add_foreign_key "posts", "forums"
+  add_foreign_key "posts", "forums", column: "subforum_id"
   add_foreign_key "posts", "users"
 end

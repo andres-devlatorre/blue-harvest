@@ -1,1 +1,6 @@
-<h1>hello</h1>
+<% @subforums.each do |subforum| %>
+  <%= link_to subforum.name, subforum_path(subforum) %>
+
+
+<% end %>
+ <%= link_to "New SubForum", new_subforum_path  %>

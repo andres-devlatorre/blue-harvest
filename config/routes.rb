@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :posts, except: %i[index new create]
   resources :calls
   resources :journals
+
+  get 'subforums/posts', to: 'posts#all_posts', as: 'all_subforum_posts'
 end

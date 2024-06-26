@@ -3,6 +3,7 @@ import consumer from "../channels/consumer"
 
 export default class extends Controller {
   static values = { livechatId: Number }
+  static targets = ["messages"]
 
   connect() {
     this.channel = consumer.subscriptions.create(
@@ -20,9 +21,8 @@ export default class extends Controller {
   }
 
   appendMessage(data) {
-    const messagesContainer = document.getElementById('messages'); // make sure this slop is properly referred in the views
-    const messageElement = document.createElement('div'); // probably a better way to do this garbage
-    messageElement.innerText = data.message;
-    messagesContainer.appendChild(messageElement);
+    // Using template literals for better readability and future HTML structure complexity
+    const messageElement = `<div>${data.message}</div>`;
+    this.messagesTarget.innerHTML += messageElement;
   }
 }

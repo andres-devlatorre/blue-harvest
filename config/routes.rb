@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :posts, except: %i[index new create]
   resources :calls
   resources :journals
+
+  resources :livechats, only: %i[index show create update destroy] do
+    resources :messages, only: %i[index create]
+  end
 end

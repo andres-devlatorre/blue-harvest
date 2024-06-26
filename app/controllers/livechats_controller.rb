@@ -15,6 +15,12 @@ class LivechatsController < ApplicationController
 
   def update
     # chatroom status should update here, fuck if i know how tho
+    @livechat = Livechat.find(params[:id])
+    if @livechat.participant1_id.present? && @livechat.participant2_id.present?
+      @livechat.update(status: "active")
+    else
+      @livechat.update(status: "closed")
+    end
   end
 
   def destroy

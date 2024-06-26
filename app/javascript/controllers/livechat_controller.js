@@ -9,8 +9,7 @@ export default class extends Controller {
       { channel: "LivechatChannel", livechat_id: this.livechatIdValue },
       {
         received: data => {
-          // Handle the incoming message data
-          console.log(data)
+          this.appendMessage(data)
         }
       }
     )
@@ -18,5 +17,12 @@ export default class extends Controller {
 
   disconnect() {
     this.channel.unsubscribe()
+  }
+
+  appendMessage(data) {
+    const messagesContainer = document.getElementById('messages'); // make sure this slop is properly referred in the views
+    const messageElement = document.createElement('div'); // probably a better way to do this garbage
+    messageElement.innerText = data.message;
+    messagesContainer.appendChild(messageElement);
   }
 }

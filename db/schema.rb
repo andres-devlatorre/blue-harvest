@@ -90,8 +90,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_185945) do
   add_foreign_key "calls", "users", column: "speaker_id"
   add_foreign_key "journals", "users"
   add_foreign_key "livechats", "users", column: "participant1_id"
-  add_foreign_key "livechats", "users", column: "participant1_id"
-  add_foreign_key "livechats", "users", column: "participant2_id"
   add_foreign_key "livechats", "users", column: "participant2_id"
   add_foreign_key "messages", "forums", column: "livechat_id"
   add_foreign_key "messages", "users"

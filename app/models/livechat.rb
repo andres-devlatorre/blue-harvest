@@ -4,7 +4,7 @@ class Livechat < ApplicationRecord
   has_many :messages, dependent: :destroy
   validates :participant1_id, presence: true
   validates :participant2_id, presence: true, exclusion: { in: ->(livechat) { [livechat.participant1_id] } }
-  validates :status, presence: true, inclusion: { in: %w[active closed] }
+  validates :status, presence: true, inclusion: { in: %w[active waiting closed] }
   validate :participants_must_be_unique
 
   private

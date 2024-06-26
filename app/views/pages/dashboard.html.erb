@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>dashboard Video Call Test</h1>
+  <h1 class="d-flex flex-row">dashboard</h1>
 
-  <script>
-    call = window.Daily.createFrame();
-    call.join({ url: 'https://blue-harvest.daily.co/blue-harvest-public' });
-  </script>
+<%= link_to 'Talk', new_call_path, class: 'btn btn-primary' %>
+<%= link_to 'Chat', "#", class: 'btn btn-primary' %>
+<%= link_to 'Listen', new_call_path, class: 'btn btn-primary' %>
+
 </div>

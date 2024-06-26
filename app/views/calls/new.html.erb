@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Call</h2>
+
+  <%= link_to 'End Call', dashboard_path, class:"btn btn-primary" %>
+    <div class="d-flex justify-content-center">
+      <script>
+          call = window.Daily.createFrame();
+          call.join({ url: 'https://blue-harvest.daily.co/blue-harvest-public' });
+      </script>
+    </div>
+</div>

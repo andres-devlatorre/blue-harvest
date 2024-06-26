@@ -10,7 +10,9 @@ class LivechatsController < ApplicationController
   end
 
   def create
-    online_users = User.where(online: true).where.not(id: current_user.id)
+    online_user_ids = Redis.new.keys('user_*_online').map { |key| key.match(/user_(\d+)_online/)[1] }.map(&:to_i)
+    online_user_ids.delete(current_user.id)
+    online_users = User.where(id: online_user_ids)
     matched_user = online_users.sample # tweak this once we have actual filters
     if matched_user && current_user.online? && matched_user.online?
       @livechat = Livechat.new(participant1_id: current_user.id, participant2_id: matched_user.id, status: 'pending')

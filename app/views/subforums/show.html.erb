@@ -1,7 +1,20 @@
-<%= @subforum.name %>
-<%= @subforum.description  %>
-<%= link_to "Back to Subforums", subforums_path %>
-<%= link_to "Edit SubForum", edit_subforum_path  %>
-<%= link_to "Delete SubForum", subforum_path(@subforum), data: {
-  turbo_method: :delete, turbo_confirm: "Are you sure?"
-} %>
+
+
+<h1><%= @subforum.name %></h1>
+<p><%= @subforum.description %></p>
+
+<%= link_to "Back to Subforums", subforums_path, class: "btn btn-primary" %>
+<%= link_to "Edit SubForum", edit_subforum_path(@subforum), class: "btn btn-secondary" %>
+<%= link_to "Delete SubForum", subforum_path(@subforum), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+<h2>Posts</h2>
+<div class="posts-list">
+  <% @subforum.posts.each do |post| %>
+    <div class="post">
+      <h3><%= link_to post.title, subforum_post_path(@subforum, post) %></h3>
+      <p><%= truncate(post.content, length: 150) %></p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Create New Post", new_subforum_post_path(@subforum), class: "btn btn-success" %>

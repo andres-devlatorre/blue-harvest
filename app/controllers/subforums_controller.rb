@@ -3,6 +3,7 @@ class SubforumsController < ApplicationController
 
   def index
     @subforums = Subforum.all
+    @posts = Post.all
   end
 
   def show

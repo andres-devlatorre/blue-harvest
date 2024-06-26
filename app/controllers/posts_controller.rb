@@ -1,11 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[show]
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_subforum, only: %i[new create]
-
-  def index
-    @posts = Post.all
-  end
 
   def show
     @comment = Comment.new

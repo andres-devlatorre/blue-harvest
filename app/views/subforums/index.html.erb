@@ -1,6 +1,18 @@
-<% @subforums.each do |subforum| %>
-  <%= link_to subforum.name, subforum_path(subforum) %>
 
-
+<div class="dashboard">
+  <div class="sidebar">
+    <h2>Subforums</h2>
+    <ul>
+      <% @subforums.each do |subforum| %>
+        <li><%= link_to subforum.name, subforum_path(subforum) %></li>
+      <% end %>
+       <%= link_to "New SubForum", new_subforum_path  %>
+    </ul>
+  </div>
+  <div class="main-content">
+    <% @posts.each do |post|  %>
+  <%= link_to post.title, subforum_post_path(post.subforum, post)  %>
+  <%= post.content  %>
 <% end %>
- <%= link_to "New SubForum", new_subforum_path  %>
+  </div>
+</div>

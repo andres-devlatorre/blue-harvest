@@ -6,4 +6,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def mark_as_online
+    Redis.new.set("user_#{id}_online", true, ex: 5.minutes.to_i)
+  end
+
+  def mark_as_offline
+    Redis.new.del("user_#{id}_online")
+  end
+
+  def online?
+    Redis.new.exists?("user_#{id}_online")
+  end
 end

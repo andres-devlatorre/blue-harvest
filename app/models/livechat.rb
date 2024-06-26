@@ -7,6 +7,10 @@ class Livechat < ApplicationRecord
   validates :status, presence: true, inclusion: { in: %w[active waiting closed] }
   validate :participants_must_be_unique
 
+  def participants
+    [participant1, participant2]
+  end
+
   private
 
   def participants_must_be_unique

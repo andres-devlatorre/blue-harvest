@@ -10,7 +10,18 @@ class LivechatsController < ApplicationController
   end
 
   def create
-    # matching criteria should be here right?
+    online_users = User.where(online: true).where.not(id: current_user.id)
+    matched_user = online_users.sample # tweak this once we have actual filters
+    if matched_user && current_user.online? && matched_user.online?
+      @livechat = Livechat.new(participant1_id: current_user.id, participant2_id: matched_user.id, status: 'pending')
+      if @livechat.save
+        redirect_to @livechat, notice: 'Live chat was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
+    else
+      redirect_to livechats_path, alert: 'Failed to create live chat. Both users need to be online.'
+    end
   end
 
   def update

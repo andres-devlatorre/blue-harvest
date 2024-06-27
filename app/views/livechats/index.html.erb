@@ -1,2 +1,6 @@
+<div data-controller="online-status"
+data-online-status-user-id-value="<%= current_user.id %>"
+data-online-status-csrf-token-value="<%= form_authenticity_token %>">
 <h1>Find a New Chat</h1>
 <%= button_to 'Look for a Chat', livechats_path, method: :post, form_class: "new_livechat" %>
+<% console %></div>

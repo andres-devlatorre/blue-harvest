@@ -1,17 +1,14 @@
-import consumer from "./consumer"
-
-consumer.subscriptions.create("OnlineStatusChannel", {
-  connected() {
-  },
-
-  disconnected() {
-  },
-
-  received(data) {
-    if (data.online) {
-      console.log(`User ${data.user_id} is online.`);
-    } else {
-      console.log(`User ${data.user_id} is offline.`);
-    }
-  }
-});
+import {Controller} from "@hotwired/stimulus"
+import { createConsumer } from "@rails/actioncable";
+export default class extends Controller {
+  connect() {
+    console.log("Connected to the OnlineStatusChannel!")
+    this.subscription = createConsumer().subscriptions.create(
+      { channel: "OnlineStatusChannel" },
+      {
+        received: data => {
+          console.log(data)
+        }
+      }
+    )
+}

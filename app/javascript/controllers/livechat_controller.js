@@ -21,7 +21,7 @@ export default class extends Controller {
   }
 
   appendMessage(data) {
-    // Using template literals for better readability and future HTML structure complexity
+
     const messageElement = `<div>${data.message}</div>`;
     this.messagesTarget.innerHTML += messageElement;
   }

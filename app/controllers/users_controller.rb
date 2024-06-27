@@ -39,6 +39,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def online_status
+    if @user.update(online: true)
+      render json: { status: 'success', message: 'User is now online' }
+    else
+      render json: { status: 'error', message: 'Failed to update user status' }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
   def set_user
     @user = User.find(params[:id])
   end

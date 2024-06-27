@@ -1,5 +1,6 @@
-<%= simple_form_for @subforum do |f| %>
+<%= simple_form_for [@subforum, @post] do |f| %>
   <%= f.input :title %>
   <%= f.input :content %>
+  <%= f.hidden_field :subforum_id, value: @subforum.id %>
   <%= f.submit %>
 <% end  %>

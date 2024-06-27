@@ -4,11 +4,12 @@ class PostsController < ApplicationController
   before_action :set_subforum, only: %i[new create]
 
   def show
-    @comment = Comment.new
     @comments = @post.comments
+    @comment = Comment.new
   end
 
   def new
+    @subforum = Subforum.find(params[:subforum_id])
     @post = Post.new
   end
 
@@ -17,7 +18,7 @@ class PostsController < ApplicationController
     @post.subforum = @subforum
     @post.user = current_user
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to subforum_post_path(@subforum, @post)
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,6 +51,6 @@ class PostsController < ApplicationController
   end
 
   def set_subforum
-    @subforum = Subforum.find(params[:id])
+    @subforum = Subforum.find(params[:subforum_id])
   end
 end

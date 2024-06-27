@@ -1,2 +1,24 @@
 <%= @post.title %>
 <%= @post.content %>
+
+<% if @comments.any? %>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+        <p><small>Posted on <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<h2>Add a Comment</h2>
+<%= simple_form_for([@post.subforum, @post, @comment], url: subforum_post_comments_path(@post.subforum, @post), local: true) do |form| %>
+  <div>
+    <%= form.input :body, as: :text, label: "Your Comment", input_html: { rows: 3 } %>
+  </div>
+  <div>
+    <%= form.button :submit, "Add Comment" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to Subforums", subforums_path, class: "btn btn-primary" %>

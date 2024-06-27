@@ -1,0 +1,4 @@
+<% @journals.each do |journal| %>
+  <p><%= link_to journal.title, journal_path(journal)%></p>
+<% end %>
+<%= link_to "Crear Diario", new_journal_path%>

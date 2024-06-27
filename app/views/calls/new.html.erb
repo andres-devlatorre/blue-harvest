@@ -2,9 +2,19 @@
   <h2>Call</h2>
 
   <%= link_to 'End Call', dashboard_path, class:"btn btn-primary" %>
-    <div class="d-flex justify-content-center">
+    <div>
       <script>
-          call = window.Daily.createFrame();
+          call = window.Daily.createFrame({
+            iframeStyle: {
+              position: 'right',
+              border: '1px solid black',
+              mode: 'grid',
+              width: '1000px',
+              height: '450px',
+              right: '1em',
+              bottom: '1em',
+            },
+          });
           call.join({ url: 'https://blue-harvest.daily.co/blue-harvest-public' });
       </script>
     </div>

@@ -7,6 +7,7 @@ class SubforumsController < ApplicationController
   end
 
   def show
+    @posts = @subforum.posts.includes(:comments)
   end
 
   def new

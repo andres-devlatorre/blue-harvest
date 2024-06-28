@@ -2,16 +2,28 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="daily-video"
 export default class extends Controller {
-  static values = { url: String }
   static targets = ['daily']
 
   connect() {
-    this.load()
+    this.call = window.Daily.createFrame({
+      iframeStyle: {
+        position: 'right',
+        border: '1px solid black',
+        mode: 'grid',
+        width: '1000px',
+        height: '450px',
+        right: '1em',
+        bottom: '1em',
+      },
+    });
   }
 
-  load() {
-    fetch(this.urlValue)
-      .then(response => response.text())
-      .then(html => this.element.innerHTML = html)
+  endCall() {
+    this.call.leave();
+  }
+
+  joinCall() {
+    console.log("procesando");
+    this.call.join({ url: 'https://blue-harvest.daily.co/blue-harvest-public' });
   }
 }

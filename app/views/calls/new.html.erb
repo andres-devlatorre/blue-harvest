@@ -1,8 +1,11 @@
 <div class="container">
   <h2>Call</h2>
 
-  <%= link_to 'End Call', dashboard_path, class:"btn btn-primary" %>
     <div data-controller="daily-video"
-         data-daily-video-url-value="/videocall.html">
+          data-daily-video-target="daily">
+
+<h2 data-action="click->daily-video#joinCall">Join Call</h2>
+<h2 data-action="click->daily-video#endCall">End Call</h2>
+
     </div>
 </div>

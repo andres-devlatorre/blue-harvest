@@ -1,24 +1,36 @@
-<%= @post.title %>
-<%= @post.content %>
+<div class="container">
+  <h1 class="post-title"><%= @post.title %></h1>
+  <div class="post-content"><%= @post.content %></div>
 
-<% if @comments.any? %>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>
-        <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
-        <p><small>Posted on <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small></p>
-      </li>
+  <div class="comments-section">
+    <h2>Comments</h2>
+    <% if @comments.any? %>
+      <ul class="list-unstyled">
+        <% @comments.each do |comment| %>
+          <li class="comment">
+            <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+            <p class="timestamp"><small>Posted on <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small></p>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No comments yet.</p>
     <% end %>
-  </ul>
-<% end %>
-<h2>Add a Comment</h2>
-<%= simple_form_for([@post.subforum, @post, @comment], url: subforum_post_comments_path(@post.subforum, @post), local: true) do |form| %>
-  <div>
-    <%= form.input :body, as: :text, label: "Your Comment", input_html: { rows: 3 } %>
   </div>
-  <div>
-    <%= form.button :submit, "Add Comment" %>
-  </div>
-<% end %>
 
-<%= link_to "Back to Subforums", subforums_path, class: "btn btn-primary" %>
+  <div class="add-comment">
+    <h2>Add a Comment</h2>
+    <%= simple_form_for([@post.subforum, @post, @comment], url: subforum_post_comments_path(@post.subforum, @post), local: true) do |form| %>
+      <div class="form-group">
+        <%= form.input :body, as: :text, label: "Your Comment", input_html: { rows: 3, class: "form-control" } %>
+      </div>
+      <div class="form-group">
+        <%= form.button :submit, "Add Comment", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="back-button">
+    <%= link_to "Back to Subforums", subforums_path, class: "btn btn-primary" %>
+  </div>
+</div>

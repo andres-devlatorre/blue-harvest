@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     if @message.save
       ActionCable.server.broadcast_to @livechat,
         message: @message.content,
-        user: @message.user.username, # this is probably going to need a schema change
+        user: @message.user.email, # this is probably going to need a schema change
         livechat_id: @livechat.id
     else
       render json: @message.errors, status: :unprocessable_entity

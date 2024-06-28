@@ -18,11 +18,11 @@ class LivechatsController < ApplicationController
       matched_user = online_users.sample
       break if matched_user
 
-      sleep 0.5 # Wait for half a second before trying again
+      sleep 0.5
     end
     if matched_user
-      @livechat = Livechat.new(participant1_id: current_user.id, participant2_id: matched_user.id, status: 'pending')
-      if @livechat.save
+      @livechat = Livechat.new(participant1_id: current_user.id, participant2_id: matched_user.id, status: 'waiting')
+      if @livechat.save!
         redirect_to @livechat, notice: 'Live chat was successfully created.'
       else
         render :new, status: :unprocessable_entity

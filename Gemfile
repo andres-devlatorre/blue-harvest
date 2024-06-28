@@ -8,8 +8,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 # Agregadas para BlueHarvest
 gem "redis"
 gem "cloudinary"
-gem 'daily-ruby', '~> 1.0.0'
-gem 'vuejs-rails'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

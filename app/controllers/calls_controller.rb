@@ -6,4 +6,5 @@ class CallsController < ApplicationController
   def new
     @call = Call.new
   end
+
 end

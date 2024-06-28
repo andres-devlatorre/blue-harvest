@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get 'dashboard', to: 'pages#dashboard', as: :dashboard
+  
   resources :subforums do
     resources :posts, only: %i[show new create edit update destroy] do
       resources :comments, only: %i[create destroy]
     end
+  get 'videocall', to: 'calls#videocall'
+
   end
   resources :calls
   resources :journals

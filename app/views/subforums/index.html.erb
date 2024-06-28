@@ -1,0 +1,37 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <h2 class="sidebar-heading">Subforums</h2>
+        <ul class="nav flex-column">
+          <% @subforums.each do |subforum| %>
+            <li class="nav-item">
+              <%= link_to subforum.name, subforum_path(subforum), class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+        <%= link_to "New Subforum", new_subforum_path, class: "btn btn-primary mt-3" %>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Recent Posts</h1>
+      </div>
+      <div class="posts-list">
+        <% @posts.each do |post| %>
+          <div class="post">
+            <h3><%= link_to post.title, subforum_post_path(post.subforum, post), class: "text-dark" %></h3>
+            <p><%= truncate(post.content, length: 200) %></p>
+            <span class="badge <%= random_badge_color %>">
+              Posted by <%= post.user.email %> in <%= link_to post.subforum.name, subforum_path(post.subforum), class: "text-white" %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </main>
+  </div>
+</div>

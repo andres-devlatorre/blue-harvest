@@ -6,4 +6,10 @@ class PagesController < ApplicationController
 
   def dashboard
   end
+
+  def mental_health
+  end
+
+  def about_us
+  end
 end

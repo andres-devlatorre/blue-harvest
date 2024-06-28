@@ -1,0 +1,76 @@
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif; // Apply the new font to the body
+}
+
+.sidebar-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.post {
+  border-bottom: 1px solid #e3e3e3;  // Add a light grey line separator
+  padding: 15px 0;
+}
+
+.post h3 {
+  margin-top: 0;
+}
+
+.post h3 a {
+  text-decoration: none;  // Remove underline from the title links
+  color: #007bff;  // Make the font blue to appear clickable
+  font-weight: 700;  // Make the font bold
+  transition: color 0.3s, text-decoration 0.3s;  // Smooth transition for hover effects
+}
+
+.post h3 a:hover {
+  color: #0056b3;  // Darker blue on hover
+  text-decoration: underline;  // Add underline on hover
+}
+
+.post p {
+  margin-bottom: 0.5rem;
+}
+
+.post .badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.badge-dark-pink {
+  background-color: #e83e8c;
+}
+
+.badge-blue {
+  background-color: #007bff;
+}
+
+.badge-purple {
+  background-color: #6f42c1;
+}
+
+.badge-red {
+  background-color: #dc3545;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.posts-list {
+  margin-top: 20px;
+}
+
+.post:last-child {
+  border-bottom: none;  // Remove the border from the last post
+}

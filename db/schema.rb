@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_26_203713) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
     t.datetime "updated_at", null: false
     t.index ["listener_id"], name: "index_calls_on_listener_id"
     t.index ["speaker_id"], name: "index_calls_on_speaker_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "forums", force: :cascade do |t|
@@ -60,11 +70,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
     t.string "title"
     t.text "content"
     t.bigint "user_id", null: false
-    t.bigint "forum_id", null: false
+    t.bigint "subforum_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["forum_id"], name: "index_posts_on_forum_id"
+    t.index ["subforum_id"], name: "index_posts_on_subforum_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "subforums", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,9 +100,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_154545) do
 
   add_foreign_key "calls", "users", column: "listener_id"
   add_foreign_key "calls", "users", column: "speaker_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "messages", "forums", column: "livechat_id"
   add_foreign_key "messages", "users"
-  add_foreign_key "posts", "forums"
+  add_foreign_key "posts", "subforums"
   add_foreign_key "posts", "users"
 end

@@ -8,11 +8,9 @@ Rails.application.routes.draw do
   resources :posts, except: %i[index new create]
   resources :calls
   resources :journals
-  resources :users do
-    member do
-      patch :online_status
-    end
-  end
+
+  resources :users, only: %i[show]
+  patch '/users/:id/online_status', to: 'users#online_status', as: :update_online_status
 
   resources :livechats, only: %i[index show create update destroy] do
     resources :messages, only: %i[index create]

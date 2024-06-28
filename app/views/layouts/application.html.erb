@@ -10,8 +10,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="livechats" data-livechat-online-users-value="<%= $redis.smembers("online_users") %>"><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body data-controller="livechats"
+        data-livechat-online-users-value="<%= $redis.smembers("online_users") %>">
+
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
   </body>

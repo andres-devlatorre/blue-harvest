@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def create
@@ -40,10 +39,16 @@ class UsersController < ApplicationController
   end
 
   def online_status
-    if @user.update(online: true)
-      render json: { status: 'success', message: 'User is now online' }
+    if current_user.update(online: params[:online])
+      ActionCable.server.broadcast 'online_status_channel', {
+        user_id: current_user.id,
+        online: current_user.online,
+        html: render_to_string(partial: "users/online_user", locals: { online_user: current_user }),
+        exclude_current_user: current_user.id
+      }
+      head :ok
     else
-      render json: { status: 'error', message: 'Failed to update user status' }, status: :unprocessable_entity
+      redirect_to root_path
     end
   end
 

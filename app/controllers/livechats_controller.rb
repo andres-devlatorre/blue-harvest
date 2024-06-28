@@ -2,8 +2,7 @@ class LivechatsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # @users = User.where.not(id: current_user.id).where(online: true)
-    @users = User.where(online: true)
+    @online_users = User.where.not(id: current_user.id).where(online: true)
     @livechats = Livechat.where(participant1_id: current_user.id).or(Livechat.where(participant2_id: current_user.id))
   end
 
@@ -12,11 +11,16 @@ class LivechatsController < ApplicationController
   end
 
   def create
-    online_user_ids = Redis.new.keys('user_*_online').map { |key| key.match(/user_(\d+)_online/)[1] }.map(&:to_i)
-    online_user_ids.delete(current_user.id)
-    online_users = User.where(id: online_user_ids)
-    matched_user = online_users.sample # tweak this once we have actual filters
-    if matched_user && current_user.online? && matched_user.online?
+    start_time = Time.now
+    matched_user = nil
+    while Time.now - start_time < 5
+      online_users = User.where.not(id: current_user.id).where(online: true)
+      matched_user = online_users.sample
+      break if matched_user
+
+      sleep 0.5 # Wait for half a second before trying again
+    end
+    if matched_user
       @livechat = Livechat.new(participant1_id: current_user.id, participant2_id: matched_user.id, status: 'pending')
       if @livechat.save
         redirect_to @livechat, notice: 'Live chat was successfully created.'
@@ -24,7 +28,7 @@ class LivechatsController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      redirect_to livechats_path, alert: 'Failed to create live chat. Both users need to be online.'
+      redirect_to livechats_path, alert: 'No available users to start a live chat.'
     end
   end
 

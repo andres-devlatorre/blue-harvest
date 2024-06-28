@@ -7,6 +7,7 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
+pin "@rails/actioncable", to: "@rails--actioncable.js" # @7.1.3
 pin "vue-video-conference-lite" # @1.0.2
 pin "@vueuse/components", to: "@vueuse--components.js" # @10.11.0
 pin "@vueuse/core", to: "@vueuse--core.js" # @10.11.0

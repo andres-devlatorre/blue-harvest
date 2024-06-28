@@ -1,0 +1,20 @@
+<h1>Live Chat</h1>
+
+<div class="messages-container" style="margin-bottom: 20px;">
+  <div id="messages" data-controller="livechat" data-livechat-id-value="<%= @livechat.id %>" style="padding: 10px; border: 1px solid #ccc; overflow-y: auto; height: 300px;">
+    <% @livechat.messages.each do |message| %>
+      <div style="margin-bottom: 10px;"><strong><%= message.user.email %>:</strong> <%= message.content %></div>
+    <% end %>
+  </div>
+</div>
+
+<div class="form-container" style="margin-top: 20px;">
+  <%= simple_form_for [@livechat, Message.new], remote: true do |f| %>
+    <div class="field" style="margin-bottom: 10px;">
+      <%= f.input :content, label: "Your Message", input_html: { data: { target: "livechat.messages" } }, wrapper_html: { style: "margin-bottom: 0;" }, label_html: { style: "margin-bottom: 5px;" } %>
+    </div>
+    <div class="actions">
+      <%= f.button :submit, "Send", style: "margin-top: 10px;" %>
+    </div>
+  <% end %>
+</div>

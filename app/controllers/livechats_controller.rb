@@ -11,6 +11,15 @@ class LivechatsController < ApplicationController
   end
 
   def create
+    existing_chat = Livechat.where(participant1_id: current_user.id, status: 'active')
+                            .or(Livechat.where(participant2_id: current_user.id, status: 'active'))
+                            .first
+
+    if existing_chat
+      redirect_to existing_chat
+      return
+    end
+
     start_time = Time.now
     matched_user = nil
     while Time.now - start_time < 5
@@ -21,7 +30,8 @@ class LivechatsController < ApplicationController
       sleep 0.5
     end
     if matched_user
-      @livechat = Livechat.new(participant1_id: current_user.id, participant2_id: matched_user.id, status: 'waiting')
+      participants = [current_user.id, matched_user.id].shuffle
+      @livechat = Livechat.new(participant1_id: participants[0], participant2_id: participants[1], status: 'waiting')
       if @livechat.save!
         redirect_to @livechat, notice: 'Live chat was successfully created.'
       else

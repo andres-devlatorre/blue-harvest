@@ -5,6 +5,15 @@ export default class extends Controller {
   static targets = ['daily']
 
   connect() {
+  }
+
+  endCall() {
+    this.call.leave();
+    this.call.destroy();
+    this.call = null;
+  }
+
+  joinCall() {
     this.call = window.Daily.createFrame({
       iframeStyle: {
         position: 'right',
@@ -16,14 +25,7 @@ export default class extends Controller {
         bottom: '1em',
       },
     });
-  }
-
-  endCall() {
-    this.call.leave();
-  }
-
-  joinCall() {
-    console.log("procesando");
     this.call.join({ url: 'https://blue-harvest.daily.co/blue-harvest-public' });
+
   }
 }

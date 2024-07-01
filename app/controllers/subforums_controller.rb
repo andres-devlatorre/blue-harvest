@@ -3,7 +3,12 @@ class SubforumsController < ApplicationController
 
   def index
     @subforums = Subforum.all
-    @posts = Post.all
+
+    if params[:query].present?
+      @posts = Post.search_by_title_and_content(params[:query])
+    else
+      @posts = Post.all
+    end
   end
 
   def show
@@ -37,6 +42,12 @@ class SubforumsController < ApplicationController
   def destroy
     @subforum.destroy
     redirect_to subforums_path
+  end
+
+  def search
+    @subforums = Subforum.all
+    @posts = Post.search_by_title_and_content(params[:query])
+    render :index
   end
 
   private

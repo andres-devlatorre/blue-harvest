@@ -21,7 +21,8 @@ export default class extends Controller {
   }
 
   async updateOnlineStatus(status) {
-    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const token =
+      document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     const response = await fetch(`/users/${this.userIdValue}/online_status`, {
       method: 'PATCH',
@@ -38,8 +39,8 @@ export default class extends Controller {
   }
 
   handleReceived(data) {
-
-    const userElement = this.usersTarget.querySelector(`[data-user-id='${data.user_id}']`)
+    const userElement =
+      this.usersTarget.querySelector(`[data-user-id='${data.user_id}']`)
 
     if (data.online) {
       if (!userElement) {

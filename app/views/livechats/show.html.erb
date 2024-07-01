@@ -3,7 +3,7 @@
 <div class="messages-container" style="margin-bottom: 20px;">
   <div id="messages" data-controller="livechat" data-livechat-id-value="<%= @livechat.id %>" style="padding: 10px; border: 1px solid #ccc; overflow-y: auto; height: 300px;">
     <% @livechat.messages.each do |message| %>
-      <div style="margin-bottom: 10px;"><strong><%= message.user.email %>:</strong> <%= message.content %></div>
+      <%= render "messages/message", message: message %>
     <% end %>
   </div>
 </div>

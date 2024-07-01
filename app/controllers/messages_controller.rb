@@ -13,10 +13,16 @@ class MessagesController < ApplicationController
     @message.user = current_user
 
     if @message.save
-      ActionCable.server.broadcast_to @livechat,
-        message: @message.content,
-        user: @message.user.email, # this is probably going to need a schema change
-        livechat_id: @livechat.id
+      Turbo::StreamsChannel.broadcast_append_to(
+        "livechat_#{params[:livechat_id]}",
+        target: "messages",
+        partial: "messages/message",
+        locals: { message: @message }
+      )
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @livechat }
+      end
     else
       render json: @message.errors, status: :unprocessable_entity
     end

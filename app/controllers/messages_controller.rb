@@ -13,16 +13,22 @@ class MessagesController < ApplicationController
     @message.user = current_user
 
     if @message.save
-      Turbo::StreamsChannel.broadcast_append_to(
-        "livechat_#{params[:livechat_id]}",
-        target: "messages",
-        partial: "messages/message",
-        locals: { message: @message }
+      # Turbo::StreamsChannel.broadcast_append_to(
+      #   "livechat_#{@livechat.id}",
+      #   target: "messages",
+      #   partial: "messages/message",
+      #   locals: { message: @message }
+      # )
+      LivechatChannel.broadcast_to(
+        @livechat,
+        render_to_string(partial: "message", locals: { message: @message })
       )
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @livechat }
-      end
+      # respond_to do |format|
+      #   format.turbo_stream
+      #   format.html { redirect_to @livechat }
+      # end
+
+      head :ok
     else
       render json: @message.errors, status: :unprocessable_entity
     end

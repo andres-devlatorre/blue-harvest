@@ -1,7 +1,25 @@
-<% @journals.each do |journal| %>
-  <p><%= link_to journal.title, journal_path(journal)%></p>
-<% end %>
-<%= link_to "Crear Diario", new_journal_path%>
+<div class="journals-wrapper">
+  <div class="journals-header">
+    <h1>Journal Entries</h1>
+    <%= link_to "Add Entry", new_journal_path, class: "btn btn-primary"%>
+  </div>
+  <div class="journals-items">
+  <% @journals.each do |journal| %>
+    <div class="journal-item">
+      <h2><%= link_to journal.title, journal_path(journal)%></h2>
+      <p class="journal-item-date"><%= journal.created_at.strftime("%B %d, %Y") %></p>
+      <div class="journal-item-content">
+        <p><%= journal.content %></p>
+      </div>
+
+    </div>
+  <% end %>
+
+
+  </div>
+</div>
+
+
 <br>
 <br>
 <%= link_to "Back to Dashboard", dashboard_path%>

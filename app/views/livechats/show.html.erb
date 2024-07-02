@@ -9,9 +9,9 @@
 </div>
 
 <div class="form-container" style="margin-top: 20px;">
-  <%= simple_form_for [@livechat, Message.new], remote: true do |f| %>
+  <%= simple_form_for [@livechat, Message.new], remote: true, html: { data: { controller: "message-form", action: "submit->message-form#success", message_form_target: "form" } } do |f| %>
     <div class="field" style="margin-bottom: 10px;">
-      <%= f.input :content, label: "Your Message", input_html: { data: { target: "livechat.messages" } }, wrapper_html: { style: "margin-bottom: 0;" }, label_html: { style: "margin-bottom: 5px;" } %>
+      <%= f.input :content, label: "Your Message", input_html: { data: { target: "livechat.messages", message_form_target: "input" }, autocomplete: "off" }, wrapper_html: { style: "margin-bottom: 0;" }, label_html: { style: "margin-bottom: 5px;" } %>
     </div>
     <div class="actions">
       <%= f.button :submit, "Send", style: "margin-top: 10px;" %>

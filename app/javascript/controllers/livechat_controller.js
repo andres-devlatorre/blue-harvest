@@ -12,6 +12,7 @@ export default class extends Controller {
       {
         received: data => {
           this.appendMessage(data)
+          this.scrollToBottom();
         }
       }
     )
@@ -23,5 +24,10 @@ export default class extends Controller {
 
   appendMessage(data) {
     this.messagesTarget.insertAdjacentHTML("beforeend", data)
+  }
+
+  scrollToBottom() {
+    const messagesContainer = this.messagesTarget;
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 }

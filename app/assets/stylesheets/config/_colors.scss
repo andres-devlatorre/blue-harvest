@@ -8,3 +8,50 @@ $orange: #E67E22;
 $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
+
+
+
+$ourblue: #2A74A1;
+$lighterBlue: #4587B0;
+$evenLighterBlue: #6899B7;
+$lightestBlue: #80A6BD;
+$veryLightBlue: #9FBACB;
+
+
+.badge-ourblue {
+  background-color: $blue;
+  color: white;
+}
+
+.badge-lighter-blue {
+  background-color: $lighterBlue;
+  color: white;
+}
+
+.badge-even-lighter-blue {
+  background-color: $evenLighterBlue;
+  color: white;
+}
+
+.badge-lightest-blue {
+  background-color: $lightestBlue;
+  color: white;
+}
+
+.badge-very-light-blue {
+  background-color: $veryLightBlue;
+  color: white;
+}
+
+.badge-gray {
+  background-color: $gray;
+  color: white;
+}
+
+/* Additional styling for badges */
+.badge {
+  padding: 0.5em 1em;
+  border-radius: 0.25rem;
+  display: inline-block;
+  font-size: 0.75em;
+}

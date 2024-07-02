@@ -1,4 +1,9 @@
 .dashboard-page {
+
+  /** Inspired by: http://graphicburger.com/flat-design-ui-components/ **/
+  /** Line-chart and donut-chart made by @kseso https://codepen.io/Kseso/pen/phiyL **/
+
+
   /************************************ FONTS ************************************/
   @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
   @import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
@@ -56,7 +61,7 @@
   }
 
   body {
-    background: #f3f4f7;
+    background: #d70951;
   }
 
   ul {
@@ -70,7 +75,8 @@
   }
 
   h2 {
-    font-size: 17px;
+    font-size: 20px;
+    font-weight: bold;
   }
 
   p {
@@ -311,10 +317,9 @@
       float: left;
       width: 300px;
     }
-    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   COLORES TARJETAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/
-      .block {
+      .block {   ///////////////////////////////////////    Color Block            ////////////////////
         margin-bottom: 25px;
-        background: #396447;
+        background: #9FBACB;
         border-radius: 5px;
       }
       /******************************************** LEFT CONTAINER *****************************************/
@@ -323,7 +328,7 @@
           height: 360px;
         }
           .menu-box .titular {
-            background: #11a8ab;
+            background: #e0083b;
           }
           .menu-box-menu .icon {
             display: inline-block;
@@ -366,6 +371,25 @@
             .menu-box-tab:hover .menu-box-number {
               background: #e64c65;
             }
+          .menu-box-end-tab {
+            line-height: 60px;
+            display: block;
+            -webkit-transition: background .2s;
+            transition: background .2s;
+          }
+            .menu-box-end-tab:hover {
+              background: #50597b;
+              border-top: 1px solid #1f253d;
+              text-decoration: none;
+            }
+            .menu-box-end-tab:hover .icon {
+              color: #fff;
+            }
+            .menu-box-end-tab:hover .menu-box-number {
+              background: #e64c65;
+            }
+
+
         .donut-chart-block {
           height: 434px;
         }
@@ -722,7 +746,7 @@
             float: right;
             line-height: 18px;
             width: 23px;
-            border: 2px solid;
+
             border-radius: 100%;
             font-size: 18px;
             text-align: center;
@@ -871,10 +895,10 @@
         }
           .middle-container .social li {
             margin-bottom: 12px;
+
+
+
           }
-
-
-
           .middle-container .social a {
             line-height: 60px;
           }
@@ -957,11 +981,12 @@
             padding: 10px 0;
           }
           .sign-in.button {
-            background: #e64c65;
+            background: #4587B0;
             margin: 10px auto;
+            margin-top: 10px;
           }
             .sign-in.button:hover {
-              background: #cc324b;
+              background: #6899B7;
             }
           .account p {
             text-align: center;

@@ -16,22 +16,35 @@
   color: $blue;
 }
 
+.chat-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // Adjust as needed, ensures the container fills the viewport height
+}
+
 .messages-container {
-  margin-bottom: 20px;
+  width: 100%;
   background-color: $veryLightBlue;
+  flex-grow: 1; // Allows the messages container to grow and fill available space
+  overflow-y: auto; // Enables scrolling for overflow content
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #messages {
   padding: 10px;
-  border: 1px solid $gray;
   overflow-y: auto;
-  height: 300px;
+  height: 100%;
   background-color: $lightestBlue;
 }
 
 .form-container {
   margin-top: 20px;
   background-color: $veryLightBlue;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   .row {
     margin-top: 0;
@@ -52,5 +65,15 @@
       background-color: $lighterBlue; // A lighter shade of blue on hover
       border-color: $lighterBlue; // Same for the border
     }
+  }
+
+  .shadow-smooth {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Soft shadow
+    border-radius: 5px; // Smoothed edges
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }

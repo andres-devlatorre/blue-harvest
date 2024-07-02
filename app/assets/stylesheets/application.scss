@@ -77,3 +77,31 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+
+
+.chat-message-item {
+  margin: 10px 50px;
+  display: flex;
+}
+
+.chat-message-avatar {
+  margin: 10px;
+}
+
+.chat-message-area {
+  background-color: $veryLightBlue;
+  padding: 5px;
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+.chat-message-item-user {
+  display: block;
+  border-bottom: 1px solid lightgrey;
+  color: red;
+}
+
+.chat-message-item-content {
+  color: blue;
+}

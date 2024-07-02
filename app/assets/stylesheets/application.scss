@@ -11,3 +11,46 @@
 @import "components/index";
 @import "pages/index";
 @import "pages/dashboard";
+
+.live-chat-title {
+  color: $blue;
+}
+
+.messages-container {
+  margin-bottom: 20px;
+  background-color: $veryLightBlue;
+}
+
+#messages {
+  padding: 10px;
+  border: 1px solid $gray;
+  overflow-y: auto;
+  height: 300px;
+  background-color: $lightestBlue;
+}
+
+.form-container {
+  margin-top: 20px;
+  background-color: $veryLightBlue;
+
+  .row {
+    margin-top: 0;
+  }
+
+  .form-control {
+    height: 40px;
+    margin-right: 0;
+  }
+
+  .btn-custom-primary {
+    background-color: $blue; // Use the blue color from your color scheme
+    border-color: $blue; // Use the same color for the border
+    color: #ffffff; // White text color for contrast
+    height: 40px;
+
+    &:hover {
+      background-color: $lighterBlue; // A lighter shade of blue on hover
+      border-color: $lighterBlue; // Same for the border
+    }
+  }
+}

@@ -1,20 +1,20 @@
-<h1>Live Chat</h1>
-
-<div class="messages-container" style="margin-bottom: 20px;">
-  <div id="messages" data-controller="livechat" data-livechat-target="messages" data-livechat-id-value="<%= @livechat.id %>" style="padding: 10px; border: 1px solid #ccc; overflow-y: auto; height: 300px;">
+<h1 class="live-chat-title">Live Chat</h1>
+<div class="messages-container">
+  <div id="messages" data-controller="livechat" data-livechat-target="messages" data-livechat-id-value="<%= @livechat.id %>">
     <% @livechat.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
   </div>
 </div>
-
-<div class="form-container" style="margin-top: 20px;">
+<div class="form-container">
   <%= simple_form_for [@livechat, Message.new], remote: true, html: { data: { controller: "message-form", action: "submit->message-form#success", message_form_target: "form" } } do |f| %>
-    <div class="field" style="margin-bottom: 10px;">
-      <%= f.input :content, label: "Your Message", input_html: { data: { target: "livechat.messages", message_form_target: "input" }, autocomplete: "off" }, wrapper_html: { style: "margin-bottom: 0;" }, label_html: { style: "margin-bottom: 5px;" } %>
-    </div>
-    <div class="actions">
-      <%= f.button :submit, "Send", style: "margin-top: 10px;" %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-11">
+        <%= f.input :content, label: false, input_html: { class: 'form-control flex-grow-1 w-100 mt-3', data: { target: "livechat.messages", message_form_target: "input" }, autocomplete: "off" } %>
+      </div>
+      <div class="col-1">
+        <%= f.button :submit, "Send", class: 'btn btn-custom-primary mt-3' %>
+      </div>
     </div>
   <% end %>
 </div>

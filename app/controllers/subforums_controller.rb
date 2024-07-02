@@ -42,7 +42,7 @@ class SubforumsController < ApplicationController
   private
 
   def subforum_params
-    params.require(:subforum).permit(:name, :description)
+    params.require(:subforum).permit(:name, :description, :photo)
   end
 
   def set_subforum

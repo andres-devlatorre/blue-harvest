@@ -6,9 +6,49 @@ $yellow: #FFC65A;
 $orange: #E67E22;
 $green: #1EDD88;
 $light-gray: #F4F4F4;
-$blue: #2A74A1;                 // navbar
-$lighterBlue: #4587B0;          // botones
+
+$blue: #2A74A1;
+$ourblue: #2A74A1;
+$lighterBlue: #4587B0;
 $evenLighterBlue: #6899B7;
-$lightestBlue: #80A6BD;         // boxes
+$lightestBlue: #80A6BD;
 $veryLightBlue: #9FBACB;
-$gray: #D8DDE0;
+
+
+.badge-ourblue {
+  background-color: $blue;
+  color: white;
+}
+
+.badge-lighter-blue {
+  background-color: $lighterBlue;
+  color: white;
+}
+
+.badge-even-lighter-blue {
+  background-color: $evenLighterBlue;
+  color: white;
+}
+
+.badge-lightest-blue {
+  background-color: $lightestBlue;
+  color: white;
+}
+
+.badge-very-light-blue {
+  background-color: $veryLightBlue;
+  color: white;
+}
+
+.badge-gray {
+  background-color: $gray;
+  color: white;
+}
+
+/* Additional styling for badges */
+.badge {
+  padding: 0.5em 1em;
+  border-radius: 0.25rem;
+  display: inline-block;
+  font-size: 0.75em;
+}

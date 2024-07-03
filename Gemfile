@@ -53,8 +53,9 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+gem "pg_search"
+gem "pundit"
 gem 'sidekiq'
-
 
 
 group :development, :test do

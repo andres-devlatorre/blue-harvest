@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-
+  
   include Pundit
 
   # Rescue from Pundit errors
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  
+   def default_url_options
+    { host: ENV[“www.talkblueharvest.me”] || “localhost:3000” }
+    end
 
   private
 

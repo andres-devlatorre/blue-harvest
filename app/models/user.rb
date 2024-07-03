@@ -14,4 +14,6 @@ class User < ApplicationRecord
   def set_default_online
     self.online ||= false
   end
+
+  has_one_attached :photo
 end

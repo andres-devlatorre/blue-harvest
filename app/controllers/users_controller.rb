@@ -59,6 +59,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password) # once again this is up to schema decisions
+    params.require(:user).permit(:username, :email, :password, :photo) # once again this is up to schema decisions
   end
 end

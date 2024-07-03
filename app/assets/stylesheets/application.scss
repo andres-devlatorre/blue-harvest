@@ -84,9 +84,9 @@
 
 
 .gradient-custom {
-  background: #fccb90;
-  background: -webkit-linear-gradient(to bottom right, rgba(252, 203, 144, 1), rgba(213, 126, 235, 1));
-  background: linear-gradient(to bottom right, rgba(252, 203, 144, 1), rgba(213, 126, 235, 1));
+  background: $veryLightBlue;
+  background: -webkit-linear-gradient(to bottom right, $veryLightBlue, $lightestBlue, $evenLighterBlue, $lighterBlue, $blue);
+  background: linear-gradient(to bottom right, $veryLightBlue, $lightestBlue, $evenLighterBlue, $lighterBlue, $blue);
 }
 
 .gradient-custom .form-container {
@@ -95,7 +95,7 @@
 
 .gradient-custom input[type=text] {
   background-color: rgb(245, 245, 245);
-  border-color: #dd8ed8 !important;
+  border-color: $lightestBlue !important;
   color: black;
 }
 

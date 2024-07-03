@@ -12,6 +12,33 @@
 @import "pages/index";
 @import "pages/dashboard";
 
+
+// jounrnals styling
+
+.journals-wrapper {
+  padding: 50px 200px;
+}
+
+.journals-header {
+  display: flex;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $gray;
+}
+
+.journals-header a {
+  margin-left: auto;
+}
+
+.journal-item-date {
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-top: -5px;
+  color: lightgray;
+  font-weight: bold;
+
+  
+  // chat styling
+  
 .live-chat-title {
   color: $blue;
 }
@@ -104,4 +131,5 @@
 
 .chat-message-item-content {
   color: blue;
+
 }

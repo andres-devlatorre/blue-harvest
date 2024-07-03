@@ -3,13 +3,13 @@
   <head>
     <title>BlueHarvest - Solo Habla</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="current-user-id" content="<%= current_user&.id %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body data-controller="livechats"
         data-livechat-online-users-value="<%= $redis.smembers("online_users") %>">
 

@@ -1,5 +1,4 @@
-<% reversed_cls = current_user.id == message.user.id ? "non-reversed" : "reversed" %>
-<div class="chat-message-item <%= reversed_cls %>">
+<div class="chat-message-item" data-controller="message" data-message-sender-id-value="<%= message.user.id %>">
   <div class="chat-message-avatar">
     <% if message.user.id % 2 == 0 %>
       <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">

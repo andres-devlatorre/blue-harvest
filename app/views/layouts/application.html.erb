@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlueHarvest</title>
+    <title>BlueHarvest - Solo Habla</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,9 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="livechats"
+        data-livechat-online-users-value="<%= $redis.smembers("online_users") %>">
+
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
+
     <%= yield %>
   </body>
 </html>

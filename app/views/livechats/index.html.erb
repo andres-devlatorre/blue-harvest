@@ -1,0 +1,14 @@
+<div class="container">
+  <div  data-controller="online-status"
+      data-online-status-user-id-value="<%= current_user.id %>">
+    <h1>Find a New Chat</h1>
+    <%= button_to 'Look for a Chat', livechats_path, method: :post, form_class: "new_livechat" %>
+
+    <h1>Online users</h1>
+    <div data-online-status-target="users">
+      <% @online_users.each do |online_user| %>
+        <%= render "users/online_user", online_user: online_user %>
+      <% end %>
+    </div>
+  </div>
+</div>

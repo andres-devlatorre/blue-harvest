@@ -1,6 +1,12 @@
 <%= simple_form_for [@subforum, @post] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
+  <%= f.input :title, input_html: { class: "form-control" } %>
+  <%= f.input :content, as: :text, input_html: { class: "form-control" } %>
   <%= f.hidden_field :subforum_id, value: @subforum.id %>
-  <%= f.submit %>
-<% end  %>
+  <div class="form-group">
+    <%= f.label :files, "Attach files (images or videos)" %>
+    <%= f.file_field :files, multiple: true, input_html: { class: "form-control-file" } %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Create Post", class: "btn btn-primary" %>
+  </div>
+<% end %>

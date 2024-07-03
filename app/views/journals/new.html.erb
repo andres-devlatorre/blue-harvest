@@ -1,5 +1,9 @@
-<%= simple_form_for @journal do |f|%>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end %>
+<div class="journals-wrapper">
+  <h1>Add Journal Entry</h1>
+
+  <%= simple_form_for @journal do |f|%>
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <%= f.submit "Add entry", :class => "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,15 +1,15 @@
-
 <div class="container-fluid">
   <div class="row">
-          <!-- Search Form -->
-      <%= form_with url: search_subforums_path, method: :get, local: true do %>
-        <div class="input-group mb-3">
-          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for posts" %>
-          <div class="input-group-append">
-            <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
-          </div>
+    <!-- Search Form -->
+    <%= form_with url: search_subforums_path, method: :get, local: true do %>
+      <div class="input-group mb-3">
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for posts" %>
+        <div class="input-group-append">
+          <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+
     <!-- Sidebar -->
     <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
@@ -32,7 +32,18 @@
       </div>
       <div class="posts-list">
         <% @posts.each do |post| %>
-          <div class="post">
+          <div class="post mb-4">
+            <div class="post-files mb-2">
+              <% post.files.each do |file| %>
+                <% if file.content_type.start_with?('image/') %>
+                  <%= image_tag url_for(file), class: 'post-image' %>
+                <% elsif file.content_type.start_with?('video/') %>
+                  <%= video_tag url_for(file), controls: true, class: 'post-video' %>
+                <% else %>
+                  <%= link_to file.filename.to_s, url_for(file), class: 'post-file' %>
+                <% end %>
+              <% end %>
+            </div>
             <h3><%= link_to post.title, subforum_post_path(post.subforum, post), class: "text-dark" %></h3>
             <p><%= truncate(post.content, length: 200) %></p>
             <span class="badge <%= random_badge_color %>">

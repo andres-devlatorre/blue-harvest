@@ -7,6 +7,10 @@ class Livechat < ApplicationRecord
   validates :status, presence: true, inclusion: { in: %w[active waiting closed] }
   validate :participants_must_be_unique
 
+  def self.find_existing_chat(user_id)
+    find_by("(participant1_id = ? OR participant2_id = ?) AND status = 'active'", user_id, user_id)
+  end
+
   private
 
   def participants_must_be_unique

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_subforum, only: %i[new create]
 
   def show
-    @comments = @post.comments
+    @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new
   end
 
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :subforum_id)
+    params.require(:post).permit(:title, :content, :subforum_id, files: [])
   end
 
   def set_post

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   after_initialize :set_default_online
   has_many :posts
   has_many :comments
@@ -14,4 +14,6 @@ class User < ApplicationRecord
   def set_default_online
     self.online ||= false
   end
+
+  has_one_attached :photo
 end

@@ -1,16 +1,18 @@
 import { Controller } from "@hotwired/stimulus"
-import consumer from "../channels/consumer"
+import { createConsumer } from "@rails/actioncable"
 
 export default class extends Controller {
-  static values = { livechatId: Number }
+  static values = { id: Number }
   static targets = ["messages"]
 
   connect() {
-    this.channel = consumer.subscriptions.create(
-      { channel: "LivechatChannel", livechat_id: this.livechatIdValue },
+    console.log(this.idValue)
+    this.channel = createConsumer().subscriptions.create(
+      { channel: "LivechatChannel", id: this.idValue },
       {
         received: data => {
           this.appendMessage(data)
+          this.scrollToBottom();
         }
       }
     )
@@ -21,8 +23,11 @@ export default class extends Controller {
   }
 
   appendMessage(data) {
+    this.messagesTarget.insertAdjacentHTML("beforeend", data)
+  }
 
-    const messageElement = `<div>${data.message}</div>`;
-    this.messagesTarget.innerHTML += messageElement;
+  scrollToBottom() {
+    const messagesContainer = this.messagesTarget;
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 }

@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
   def index
-    @journals = Journal.where(user_id: current_user.id)
+    @journals = Journal.where(user_id: current_user.id).order(created_at: :desc)
   end
 
   def show

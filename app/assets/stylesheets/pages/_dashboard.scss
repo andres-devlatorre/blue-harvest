@@ -61,7 +61,7 @@
   }
 
   body {
-    background: #d70951;
+    background: #281018;
   }
 
   ul {
@@ -319,8 +319,9 @@
     }
       .block {   ///////////////////////////////////////    Color Block            ////////////////////
         margin-bottom: 25px;
-        background: #9FBACB;
-        border-radius: 5px;
+        background: #80A6BD;
+        border-radius: 2px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
       }
       /******************************************** LEFT CONTAINER *****************************************/
       .left-container {}
@@ -328,7 +329,7 @@
           height: 360px;
         }
           .menu-box .titular {
-            background: #e0083b;
+            background: #4587B0;
           }
           .menu-box-menu .icon {
             display: inline-block;
@@ -811,7 +812,7 @@
           height: 555px;
         }
           .weather .titular {
-            background: #cc324b;
+            background: #2A74A1;
           }
             .weather .titular .icon {
               padding-right: 15px;
@@ -975,7 +976,7 @@
               background: #0F9295;
             }
         .account {
-          height: 390px;
+          height: 300px;
         }
           .account .titular {
             padding: 10px 0;

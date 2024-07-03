@@ -22,17 +22,18 @@ users = 5.times.map do |i|
     last_name: last_names[i]
   )
 end
-
 # Crear 5 forums con 5 topics cada uno acerca de salud mental
 forums = 5.times.map do |i|
   forum = Forum.create!(topic: "Mental Health Forum #{i + 1}")
 
   5.times do |j|
+    subforum = Subforum.create!(name: "Subforum #{j + 1} in #{forum.topic}", description: "Description of Subforum #{j + 1} in #{forum.topic}")
+
     topic = Post.create!(
       title: "Topic #{j + 1} in #{forum.topic}",
       content: "Content of topic #{j + 1} in forum #{forum.topic}",
       user: users.sample,
-      forum: forum
+      subforum_id: subforum.id  # Usamos subforum.id aquí
     )
 
     # Crear 5 posts por cada topic
@@ -41,11 +42,13 @@ forums = 5.times.map do |i|
         title: "Post #{k + 1} in #{topic.title}",
         content: "Content of post #{k + 1} in topic #{topic.title}",
         user: users.sample,
-        forum: forum
+        subforum_id: subforum.id  # Usamos subforum.id aquí también
       )
     end
   end
 end
+
+
 
 # Crear entre 2 y 3 journals por usuario
 users.each do |user|

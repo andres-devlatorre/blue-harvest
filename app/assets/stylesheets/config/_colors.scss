@@ -13,6 +13,7 @@ $lighterBlue: #4587B0;
 $evenLighterBlue: #6899B7;
 $lightestBlue: #80A6BD;
 $veryLightBlue: #9FBACB;
+$gray: #D8DDE0;
 
 
 .badge-ourblue {
@@ -41,7 +42,7 @@ $veryLightBlue: #9FBACB;
 }
 
 .badge-gray {
-  background-color: lightgray;
+  background-color: $gray;
   color: white;
 }
 

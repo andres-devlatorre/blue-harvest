@@ -1,9 +1,23 @@
-<div class="chat-message-item">
+<% reversed_cls = current_user.id == message.user.id ? "non-reversed" : "reversed" %>
+<div class="chat-message-item <%= reversed_cls %>">
   <div class="chat-message-avatar">
-    <img src="https://i.pravatar.cc/60" />
+    <% if message.user.id % 2 == 0 %>
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+    <% else %>
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar" class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+    <% end %>
   </div>
   <div class="chat-message-area">
-    <strong class="chat-message-item-user"><%= message.user.email %>:</strong>
-    <span class="chat-message-item-content"><%= message.content %><span>
+    <div class="card mask-custom">
+      <div class="card-header d-flex justify-content-between p-3" style="border-bottom: 1px solid rgba(255,255,255,.3);">
+        <p class="fw-bold mb-0"><%= message.user.email %></p>
+        <p class="text-light small mb-0"><i class="far fa-clock"></i>&nbsp;<%= time_ago_in_words(message.created_at, include_seconds: true) %> ago</p>
+      </div>
+      <div class="card-body">
+        <p class="mb-0">
+          <%= message.content %>
+        </p>
+      </div>
+    </div>
   </div>
 </div>

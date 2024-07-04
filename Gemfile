@@ -56,7 +56,7 @@ gem "sassc-rails"
 gem "pg_search"
 gem "pundit"
 gem 'sidekiq'
-
+gem 'sidekiq-failures'
 
 group :development, :test do
   gem "dotenv-rails"

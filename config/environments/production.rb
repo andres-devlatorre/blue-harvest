@@ -1,7 +1,11 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+  config.action_mailer.asset_host = "http://www.talkblueharvest.me"
+  Rails.application.default_url_options[:host] = "http://www.talkblueharvest.me"
+  config.action_controller.default_url_options = { host: "http://www.talkblueharvest.me" }
+
+  config.action_mailer.default_url_options = { host: "http://www.talkblueharvest.me" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -12,6 +16,8 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+
+  config.active_job.queue_adapter = :sidekiq
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
@@ -87,6 +93,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_cable.url = "wss://www.talkblueharvest.me/cable"
+  config.action_cable.allowed_request_origins = ["http://www.talkblueharvest.me"]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [

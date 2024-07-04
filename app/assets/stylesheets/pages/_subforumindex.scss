@@ -1,0 +1,13 @@
+.post-image, .post-video {
+  width: 100%;
+  max-width: 400px; /* Adjust as needed */
+  height: auto;
+  display: block;
+  margin: 10px 0; /* Add some margin */
+  border-radius: 10px; /* Add border radius */
+}
+
+.post-file {
+  display: block;
+  margin: 10px 0;
+}

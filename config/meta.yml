@@ -1,0 +1,5 @@
+ # config/meta.yml
+ meta_title: "Blue Harvest - Solo Habla"
+ meta_description: "Unleash your thoughts, connect humanely"
+ meta_image: "cover.png" # should exist in `app/assets/images/`
+ twitter_account: "@product_twitter_account" # required for Twitter Cards

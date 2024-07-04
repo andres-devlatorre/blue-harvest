@@ -2,6 +2,16 @@
   <h1 class="post-title"><%= @post.title %></h1>
   <div class="post-content"><%= @post.content %></div>
 
+  <% @post.files.each do |file| %>
+    <% if file.content_type.start_with?('image/') %>
+      <%= cl_image_tag file.key, class: 'post-image' %>
+    <% elsif file.content_type.start_with?('video/') %>
+      <%= cl_video_tag file.key, controls: true, class: 'post-video' %>
+    <% else %>
+      <%= link_to file.filename.to_s, url_for(file), class: 'post-file' %>
+    <% end %>
+  <% end %>
+
   <div class="comments-section">
     <h2>Comments</h2>
     <% if @comments.any? %>
@@ -34,3 +44,7 @@
     <%= link_to "Back to Subforums", subforums_path, class: "btn btn-primary" %>
   </div>
 </div>
+
+
+ <% content_for :meta_title, "#{@post.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+ <% content_for :meta_description, @post.content %>

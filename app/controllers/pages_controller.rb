@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @users = User.all
+    @user = current_user
   end
 
   def mental_health
@@ -12,4 +14,5 @@ class PagesController < ApplicationController
 
   def about_us
   end
+
 end

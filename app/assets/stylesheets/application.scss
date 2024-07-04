@@ -51,7 +51,6 @@
 
 .messages-container {
   width: 100%;
-  background-color: $veryLightBlue;
   flex-grow: 1; // Allows the messages container to grow and fill available space
   overflow-y: auto; // Enables scrolling for overflow content
   margin: 0;
@@ -63,7 +62,6 @@
   padding: 10px;
   overflow-y: auto;
   height: 100%;
-  background-color: $lightestBlue;
 }
 
 .form-container {
@@ -106,6 +104,48 @@
 }
 
 
+.chat-page-container {
+  height: 90vh !important;
+}
+
+
+
+.gradient-custom {
+  background: $veryLightBlue;
+  background: -webkit-linear-gradient(to bottom right, $veryLightBlue, $lightestBlue, $evenLighterBlue, $lighterBlue, $blue);
+  background: linear-gradient(to bottom right, $veryLightBlue, $lightestBlue, $evenLighterBlue, $lighterBlue, $blue);
+}
+
+.gradient-custom .form-container {
+  background-color: transparent;
+}
+
+.gradient-custom input[type=text] {
+  background-color: rgb(245, 245, 245);
+  border-color: $lightestBlue !important;
+  color: black;
+}
+
+.gradient-custom input[type=text]:focus {
+  color: black;
+}
+
+.gradient-custom input[type=submit] {
+  text-transform: uppercase;
+  box-shadow: 0 4px 9px -4px rgba(0,0,0,.35);
+  background-color: rgb(245, 245, 245);
+  color: rgb(97, 97, 97);
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, .2);
+    background-clip: border-box;
+  border-radius: 2em;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
 
 .chat-message-item {
   margin: 10px 50px;
@@ -117,7 +157,6 @@
 }
 
 .chat-message-area {
-  background-color: $veryLightBlue;
   padding: 5px;
   border-radius: 10px;
   flex-grow: 1;
@@ -126,10 +165,13 @@
 .chat-message-item-user {
   display: block;
   border-bottom: 1px solid lightgrey;
-  color: red;
+  color: $blue;
 }
 
 .chat-message-item-content {
-  color: blue;
+  color: black;
+}
 
+.reversed {
+  flex-direction: row-reverse;
 }

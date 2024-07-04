@@ -1,5 +1,4 @@
-<div class="chat-page-container d-flex flex-column vh-100">
-  <h1 class="live-chat-title">Live Chat</h1>
+<div class="chat-page-container gradient-custom d-flex flex-column">
   <div class="messages-container flex-grow-1 overflow-auto shadow-smooth">
     <div id="messages" data-controller="livechat" data-livechat-target="messages" data-livechat-id-value="<%= @livechat.id %>">
       <% @livechat.messages.each do |message| %>
@@ -14,7 +13,7 @@
           <%= f.input :content, label: false, input_html: { class: 'form-control flex-grow-1 w-100 mt-3', data: { target: "livechat.messages", message_form_target: "input" }, autocomplete: "off" } %>
         </div>
         <div class="col-1">
-          <%= f.button :submit, "Send", class: 'btn btn-custom-primary mt-3' %>
+          <%= f.button :submit, "Send", class: 'btn btn-btn-custom-primary mt-3' %>
         </div>
       </div>
     <% end %>

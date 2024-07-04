@@ -10,6 +10,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "shared/footer";
 
 // jounrnals styling
 
@@ -131,3 +132,28 @@
   color: blue;
 
 }
+
+
+
+// dashboard
+
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-description {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+.section {
+  margin-bottom: 20px;
+}
+
+

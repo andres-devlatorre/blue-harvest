@@ -11,6 +11,7 @@
 @import "components/index";
 @import "pages/index";
 
+
 // jounrnals styling
 
 .journals-wrapper {
@@ -177,4 +178,37 @@
 
 .reversed {
   flex-direction: row-reverse;
+}
+
+
+
+// dashboard
+
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-description {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+.section {
+  margin-bottom: 20px;
+}
+
+
+
+.stimulus-frame {
+  position: fixed; /* O puedes usar 'absolute' si es más adecuado para tu layout */
+  bottom: 0; /* Ajusta esto según sea necesario para posicionar correctamente el frame */
+  left: 0; /* Ajusta para alinear a la izquierda, o usa 'right: 0;' para alinear a la derecha */
+  z-index: 1000; /* Asegura que el frame esté sobre otros elementos; ajusta según sea necesario */
+  width: 100%; /* O el ancho que desees */
 }

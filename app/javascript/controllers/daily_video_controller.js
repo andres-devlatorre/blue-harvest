@@ -16,13 +16,13 @@ export default class extends Controller {
   joinCall() {
     this.call = window.Daily.createFrame({
       iframeStyle: {
-        position: 'right',
+        position: 'fixed',
         border: '1px solid black',
         mode: 'grid',
-        width: '1000px',
+        width: '100%',
         height: '450px',
-        right: '1em',
-        bottom: '1em',
+        right: '0px',
+        top: '250px',
       },
     });
     this.call.join({ url: 'https://blue-harvest.daily.co/blue-harvest-public' });

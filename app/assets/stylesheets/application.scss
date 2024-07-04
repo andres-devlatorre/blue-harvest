@@ -10,7 +10,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "shared/footer";
+
 
 // jounrnals styling
 
@@ -157,3 +157,11 @@
 }
 
 
+
+.stimulus-frame {
+  position: fixed; /* O puedes usar 'absolute' si es más adecuado para tu layout */
+  bottom: 0; /* Ajusta esto según sea necesario para posicionar correctamente el frame */
+  left: 0; /* Ajusta para alinear a la izquierda, o usa 'right: 0;' para alinear a la derecha */
+  z-index: 1000; /* Asegura que el frame esté sobre otros elementos; ajusta según sea necesario */
+  width: 100%; /* O el ancho que desees */
+}

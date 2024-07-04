@@ -36,7 +36,7 @@
             <div class="post-files mb-2">
               <% post.files.each do |file| %>
                 <% if file.content_type.start_with?('image/') %>
-                  <%= image_tag url_for(file), class: 'post-image' %>
+                  <%= cl_image_tag url_for(file), class: 'post-image' %>
                 <% elsif file.content_type.start_with?('video/') %>
                   <%= video_tag url_for(file), controls: true, class: 'post-video' %>
                 <% else %>

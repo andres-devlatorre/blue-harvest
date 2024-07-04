@@ -11,16 +11,10 @@ class LivechatsController < ApplicationController
   end
 
   def create
-    existing_chat = Livechat.find_existing_chat(current_user.id)
-
-    redirect_to existing_chat and return if existing_chat
-
     matched_user = find_matched_user_with_timeout(current_user.id)
-
     if matched_user
       participants = [current_user.id, matched_user.id].shuffle
       @livechat = Livechat.new(participant1_id: participants[0], participant2_id: participants[1], status: 'waiting')
-
       if @livechat.save
         redirect_to @livechat, notice: 'Live chat was successfully created.'
       else

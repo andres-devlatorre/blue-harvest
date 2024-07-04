@@ -16,7 +16,7 @@ class LivechatsController < ApplicationController
       participants = [current_user.id, matched_user.id].shuffle
       @livechat = Livechat.new(participant1_id: participants[0], participant2_id: participants[1], status: 'waiting')
       if @livechat.save
-        redirect_to @livechat, notice: 'Live chat was successfully created.'
+        redirect_to @livechat, allow_other_host: true, notice: 'Live chat was successfully created.'
       else
         render :new, status: :unprocessable_entity
       end

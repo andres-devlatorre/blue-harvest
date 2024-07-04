@@ -1,3 +1,8 @@
-<%= @journal.title %>
-<%= @journal.content %>
-<%= link_to "Volver", journals_path%>
+<div class="journals-wrapper">
+  <h2><%= link_to @journal.title, journal_path(@journal)%></h2>
+  <p class="journal-item-date"><%= @journal.created_at.strftime("%B %d, %Y") %></p>
+  <div class="journal-item-content">
+    <p><%= @journal.content %></p>
+  </div>
+  <%= link_to "Volver", journals_path%>
+</div>

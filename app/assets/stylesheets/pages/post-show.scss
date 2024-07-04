@@ -70,3 +70,24 @@ h1, h2, h3, h4, h5, h6 {
 .back-button {
   margin-top: 20px;
 }
+
+.post-video {
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center the video */
+}
+
+.post-image {
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
+.post-file {
+  display: block;
+  margin: 10px 0;
+}

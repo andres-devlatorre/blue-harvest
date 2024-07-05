@@ -1,7 +1,7 @@
 <div class="chat-message-item" data-controller="message" data-message-sender-id-value="<%= message.user.id %>">
   <div class="chat-message-avatar">
     <% if message.user.id % 2 == 0 %>
-      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
     <% else %>
       <img src="https://kitt.lewagon.com/placeholder/users/andres-devlatorre" alt="avatar" class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
     <% end %>
@@ -9,7 +9,7 @@
   <div class="chat-message-area">
     <div class="card mask-custom">
       <div class="card-header d-flex justify-content-between p-3" style="border-bottom: 1px solid rgba(255,255,255,.3);">
-        <p class="fw-bold mb-0"><%= message.user.email %></p>
+        <p class="fw-bold mb-0"><%= message.user.email.split('@')[0].capitalize %></p>
         <p class="text-light small mb-0"><i class="far fa-clock"></i>&nbsp;<%= time_ago_in_words(message.created_at, include_seconds: true) %> ago</p>
       </div>
       <div class="card-body">
@@ -20,3 +20,4 @@
     </div>
   </div>
 </div>
+

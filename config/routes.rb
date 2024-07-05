@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'mental_health', to: 'pages#mental_health', as: :mental_health
   get 'about_us', to: 'pages#about_us', as: :about_us
 
-
   resources :subforums do
     collection do
       get 'search', to: 'subforums#search'

@@ -2,7 +2,8 @@ class SubforumsController < ApplicationController
   before_action :set_subforum, only: %i[show edit update destroy]
 
   def index
-    @subforums = Subforum.all
+    authorize Subforum
+    @subforums = policy_scope(Subforum)
 
     if params[:query].present?
       @posts = Post.search_by_title_and_content(params[:query])
@@ -12,15 +13,18 @@ class SubforumsController < ApplicationController
   end
 
   def show
+    authorize @subforum
     @posts = @subforum.posts.includes(:comments)
   end
 
   def new
     @subforum = Subforum.new
+    authorize @subforum
   end
 
   def create
     @subforum = Subforum.new(subforum_params)
+    authorize @subforum
     if @subforum.save
       redirect_to subforum_path(@subforum)
     else
@@ -29,9 +33,11 @@ class SubforumsController < ApplicationController
   end
 
   def edit
+    authorize @subforum
   end
 
   def update
+    authorize @subforum
     if @subforum.update(subforum_params)
       redirect_to subforum_path(@subforum)
     else
@@ -40,12 +46,14 @@ class SubforumsController < ApplicationController
   end
 
   def destroy
+    authorize @subforum
     @subforum.destroy
     redirect_to subforums_path
   end
 
   def search
-    @subforums = Subforum.all
+    authorize Subforum, :index?
+    @subforums = policy_scope(Subforum)
     @posts = Post.search_by_title_and_content(params[:query])
     render :index
   end

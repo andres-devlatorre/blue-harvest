@@ -1,16 +1,18 @@
-class SubforumPolicy < ApplicationPolicy
+class JournalPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      scope.all
+      return scope.none unless user
+
+      scope.where(user_id: user.id)
     end
   end
 
   def index?
-    true
+    user.present?
   end
 
   def show?
-    true
+    owner?
   end
 
   def create?
@@ -22,7 +24,7 @@ class SubforumPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present?
+    owner?
   end
 
   def edit?
@@ -30,6 +32,12 @@ class SubforumPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present?
+    owner?
+  end
+
+  private
+
+  def owner?
+    user.present? && record.user_id == user.id
   end
 end

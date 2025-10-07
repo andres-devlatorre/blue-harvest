@@ -21,8 +21,8 @@
           <div class="panel border shadow rounded text-center">
             <div class="panel-body p-4">
               <h3>Connect</h3>
-                <%= link_to "Talk", new_call_path, class: "btn btn-primary mx-2" %>
-                <%= link_to "Listen", new_call_path, class: "btn btn-primary mx-2" %>
+                <%= link_to "Talk", new_call_path(role: 'speaker'), class: "btn btn-primary mx-2" %>
+                <%= link_to "Listen", new_call_path(role: 'listener'), class: "btn btn-primary mx-2" %>
             </div>
           </div>
         </div>

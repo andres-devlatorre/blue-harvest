@@ -1,12 +1,8 @@
-class SubforumPolicy < ApplicationPolicy
+class PostPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
       scope.all
     end
-  end
-
-  def index?
-    true
   end
 
   def show?
@@ -22,7 +18,7 @@ class SubforumPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present?
+    owner?
   end
 
   def edit?
@@ -30,6 +26,12 @@ class SubforumPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present?
+    owner?
+  end
+
+  private
+
+  def owner?
+    user.present? && record.user_id == user.id
   end
 end

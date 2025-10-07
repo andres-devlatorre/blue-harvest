@@ -39,7 +39,9 @@ class UsersController < ApplicationController
   end
 
   def online_status
-    if current_user.update(online: params[:online])
+    online = ActiveModel::Type::Boolean.new.cast(params[:online])
+    if current_user.update(online: online)
+      update_presence_cache(current_user)
       ActionCable.server.broadcast 'online_status_channel', {
         user_id: current_user.id,
         online: current_user.online,
@@ -60,5 +62,15 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :photo) # once again this is up to schema decisions
+  end
+
+  def update_presence_cache(user)
+    return unless defined?($redis) && $redis
+
+    if user.online?
+      $redis.sadd('online_users', user.id)
+    else
+      $redis.srem('online_users', user.id)
+    end
   end
 end

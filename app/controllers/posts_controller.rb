@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :set_subforum, only: %i[new create]
 
   def show
+    authorize @post
     @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new
   end
@@ -11,12 +12,14 @@ class PostsController < ApplicationController
   def new
     @subforum = Subforum.find(params[:subforum_id])
     @post = Post.new
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
     @post.subforum = @subforum
     @post.user = current_user
+    authorize @post
     if @post.save
       redirect_to subforum_post_path(@subforum, @post)
     else
@@ -25,9 +28,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def update
+    authorize @post
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
@@ -36,6 +41,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
     @post.destroy
     redirect_to posts_path
   end

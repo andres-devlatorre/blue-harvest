@@ -1,7 +1,33 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Call</h2>
-  <div class="text-center" data-controller="daily-video" data-daily-video-target="daily">
-    <h2 class="btn btn-primary mx-2" data-action="click->daily-video#joinCall">Join Call</h2>
-    <h2 class="btn btn-secondary mx-2" data-action="click->daily-video#endCall">End Call</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h2 class="mb-3 text-center">Start a Call</h2>
+      <p class="text-center text-muted">You're about to join as <strong><%= @role.capitalize %></strong>. Need the other role?
+        <%= link_to(@role == 'speaker' ? 'Join as listener' : 'Join as speaker', new_call_path(role: @role == 'speaker' ? 'listener' : 'speaker'), class: 'ms-2') %>
+      </p>
+
+      <% if @participants.any? %>
+        <%= simple_form_for @call do |f| %>
+          <%= f.input :role, as: :hidden, input_html: { value: @role } %>
+
+          <%= f.input :call_category,
+                      label: 'Topic',
+                      placeholder: 'e.g. Anxiety, Burnout, Support',
+                      required: true %>
+
+          <%= f.input :participant_id,
+                      label: (@role == 'speaker' ? 'Choose someone to listen' : 'Choose someone to talk to'),
+                      collection: @participants,
+                      value_method: :id,
+                      label_method: ->(user) { user.email.split('@').first.capitalize },
+                      prompt: 'Select a participant',
+                      required: true %>
+
+          <%= f.button :submit, 'Start Call', class: 'btn btn-primary w-100' %>
+        <% end %>
+      <% else %>
+        <div class="alert alert-info">No other users are available right now. Check back soon.</div>
+      <% end %>
+    </div>
   </div>
 </div>

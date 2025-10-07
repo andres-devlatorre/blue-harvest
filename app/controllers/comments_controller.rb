@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.post = @post
     @comment.user = current_user
+    authorize @comment
     if @comment.save
       redirect_to subforum_post_path(@post.subforum, @post)
     else
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authorize @comment
     @comment.destroy
     redirect_to subforum_post_path(@comment.post.subforum, @comment.post)
   end

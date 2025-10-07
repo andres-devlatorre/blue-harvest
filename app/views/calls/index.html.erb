@@ -1,8 +1,34 @@
-<h2>Call logs</h2>
+<div class="container mt-4">
+  <h2>Call History</h2>
 
-
-<%= @calls.each do |call| %>
-<%= call.updated_at %>
-<% end %>
-
-
+  <% if @calls.any? %>
+    <div class="table-responsive mt-3">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th>Speaker</th>
+            <th>Listener</th>
+            <th>Status</th>
+            <th>Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @calls.each do |call| %>
+            <tr>
+              <td><%= call.call_category %></td>
+              <td><%= call.speaker.email %></td>
+              <td><%= call.listener.email %></td>
+              <td><%= call.connected? ? 'In progress' : 'Finished' %></td>
+              <td><%= time_ago_in_words(call.updated_at) %> ago</td>
+              <td><%= link_to 'View', call_path(call), class: 'btn btn-sm btn-outline-primary' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-muted">You have not started any calls yet.</p>
+  <% end %>
+</div>

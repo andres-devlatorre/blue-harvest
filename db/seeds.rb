@@ -1,61 +1,80 @@
 # db/seeds.rb
 
-# Destruir todos los registros existentes en los modelos
-User.destroy_all
-Forum.destroy_all
+puts 'Cleaning database...'
+
+Message.destroy_all
+Livechat.destroy_all
+Comment.destroy_all
 Post.destroy_all
+Subforum.destroy_all
 Journal.destroy_all
+Call.destroy_all
+User.destroy_all
 
-puts 'datos borrados de los modelos'
+$redis&.del('online_users')
 
-# Nombres y apellidos para los usuarios
-first_names = ["John", "Jane", "Alice", "Bob", "Charlie"]
-last_names = ["Doe", "Smith", "Johnson", "Williams", "Brown"]
+puts 'Seeding users...'
+first_names = %w[John Jane Alice Bob Charlie]
+last_names  = %w[Doe Smith Johnson Williams Brown]
 
-# Crear 5 usuarios
-users = 5.times.map do |i|
+users = first_names.each_with_index.map do |first_name, index|
   User.create!(
-    email: "user#{i + 1}@gmail.com",
+    email: "user#{index + 1}@gmail.com",
     password: '123456',
     password_confirmation: '123456',
-    first_name: first_names[i],
-    last_name: last_names[i]
+    first_name:,
+    last_name: last_names[index],
+    online: false
   )
 end
 
-# Crear 5 forums con 5 topics cada uno acerca de salud mental
-forums = 5.times.map do |i|
-  forum = Forum.create!(topic: "Mental Health Forum #{i + 1}")
+puts 'Seeding subforums, posts and comments...'
+subforums = [
+  { name: 'Anxiety Support', description: 'Share coping strategies and success stories.' },
+  { name: 'Burnout Recovery', description: 'Talk about workplace stress and rebuilding routines.' },
+  { name: 'Mindfulness', description: 'Discuss meditation, mindful habits and resources.' }
+].map { |attrs| Subforum.create!(attrs) }
 
-  5.times do |j|
-    topic = Post.create!(
-      title: "Topic #{j + 1} in #{forum.topic}",
-      content: "Content of topic #{j + 1} in forum #{forum.topic}",
-      user: users.sample,
-      forum: forum
+subforums.each do |subforum|
+  3.times do |index|
+    author = users.sample
+    post = Post.create!(
+      title: "#{subforum.name} Topic #{index + 1}",
+      content: "This is a community thread about #{subforum.name.downcase}.",
+      user: author,
+      subforum:
     )
 
-    # Crear 5 posts por cada topic
-    5.times do |k|
-      Post.create!(
-        title: "Post #{k + 1} in #{topic.title}",
-        content: "Content of post #{k + 1} in topic #{topic.title}",
-        user: users.sample,
-        forum: forum
+    rand(2..4).times do |comment_index|
+      commenter = (users - [author]).sample
+      Comment.create!(
+        body: "Comment ##{comment_index + 1} on #{post.title}.",
+        user: commenter,
+        post:
       )
     end
   end
 end
 
-# Crear entre 2 y 3 journals por usuario
+puts 'Seeding journals...'
 users.each do |user|
-  rand(2..3).times do |i|
+  2.times do |index|
     Journal.create!(
-      title: "Journal #{i + 1} by #{user.email}",
-      content: "Content of journal #{i + 1} by #{user.email}",
-      user: user
+      title: "Reflection #{index + 1} by #{user.first_name}",
+      content: "Today I learned something new about taking care of myself.",
+      user:
     )
   end
 end
 
-puts "Database seeded successfully!"
+puts 'Seeding sample calls...'
+users.combination(2).first(2).each_with_index do |pair, index|
+  Call.create!(
+    call_category: %w[Support Listening Coaching].sample,
+    speaker: pair.first,
+    listener: pair.last,
+    connected: index.zero? # one active, one finished
+  )
+end
+
+puts 'Seeding completed successfully.'

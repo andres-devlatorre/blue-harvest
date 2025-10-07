@@ -3,12 +3,14 @@ class MessagesController < ApplicationController
   before_action :set_livechat
 
   def index
+    authorize @livechat, :participate?
     @messages = @livechat.messages
   end
 
   # i need to figure out how to make both of these apply to the specific livechat, fun!
 
   def create
+    authorize @livechat, :participate?
     @message = @livechat.messages.build(message_params)
     @message.user = current_user
 

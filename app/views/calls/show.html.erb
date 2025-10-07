@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Call Details</h5>
+          <p class="card-text mb-1"><strong>Topic:</strong> <%= @call.call_category %></p>
+          <p class="card-text mb-1"><strong>Speaker:</strong> <%= @call.speaker.email %></p>
+          <p class="card-text mb-3"><strong>Listener:</strong> <%= @call.listener.email %></p>
+          <p class="card-text mb-3"><strong>Status:</strong> <%= @call.connected? ? 'In progress' : 'Finished' %></p>
+
+          <% if @call.connected? %>
+            <%= button_to 'Mark Call as Finished', call_path(@call), method: :patch, params: { call: { connected: false } }, class: 'btn btn-outline-danger w-100' %>
+          <% else %>
+            <div class="alert alert-success mb-0">Thanks for connecting! You can close this page.</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body" data-controller="daily-video" data-daily-video-target="daily">
+          <h5 class="card-title mb-3">Video Room</h5>
+          <p class="text-muted">The controls below open a video session powered by Daily. Use "Join Call" to enter the shared room and "End Call" when you are done.</p>
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary" data-action="click->daily-video#joinCall">Join Call</button>
+            <button class="btn btn-secondary" data-action="click->daily-video#endCall">End Call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

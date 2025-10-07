@@ -1,12 +1,133 @@
-<div class="container">
+<section class="vh-100 d-flex align-items-center text-white position-relative overflow-hidden" style="background: radial-gradient(circle at top left, #4F8BF9, #2B4AA5 55%, #0D1B3E);">
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="d-flex align-items-center mb-4">
+          <%= image_tag("logo_con_borde.png", class: "me-3", alt: "Blue Harvest logo", width: 72, height: 72) %>
+          <span class="badge bg-light text-primary fw-semibold">Mental wellness redesigned</span>
+        </div>
+        <h1 class="display-4 fw-bold">Conversations that heal, resources that guide, community that cares.</h1>
+        <p class="lead mt-3 mb-4 text-light">Blue Harvest blends peer support, moderated forums, and professional guidance so you never have to navigate tough days alone.</p>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <%= link_to "Get Started", new_user_registration_path, class: "btn btn-lg btn-light text-primary fw-semibold shadow" %>
+          <%= link_to "Browse the Forum", subforums_path, class: "btn btn-lg btn-outline-light fw-semibold" %>
+        </div>
+        <div class="d-flex gap-4 mt-5 text-white-50">
+          <div>
+            <p class="h4 mb-0 fw-bold">400+</p>
+            <small class="text-white-50">Stories shared this month</small>
+          </div>
+          <div>
+            <p class="h4 mb-0 fw-bold">24/7</p>
+            <small class="text-white-50">Live chat availability</small>
+          </div>
+          <div>
+            <p class="h4 mb-0 fw-bold">92%</p>
+            <small class="text-white-50">Members report feeling supported</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <div class="bg-white text-dark rounded-5 shadow-lg p-4 p-lg-5">
+          <h2 class="h3 fw-bold mb-4">Your wellness toolkit</h2>
+          <ul class="list-unstyled mb-4">
+            <li class="d-flex align-items-start mb-3">
+              <span class="text-primary me-3 fs-4"><i class="fas fa-comments"></i></span>
+              <div>
+                <p class="fw-semibold mb-1">Anonymous live chat pairing</p>
+                <p class="mb-0 text-muted">Connect with a listener instantly or offer your ear to someone who needs it.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-start mb-3">
+              <span class="text-primary me-3 fs-4"><i class="fas fa-seedling"></i></span>
+              <div>
+                <p class="fw-semibold mb-1">Guided personal journal</p>
+                <p class="mb-0 text-muted">Track progress privately while our prompts keep you grounded and present.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-start">
+              <span class="text-primary me-3 fs-4"><i class="fas fa-people-group"></i></span>
+              <div>
+                <p class="fw-semibold mb-1">Curated community spaces</p>
+                <p class="mb-0 text-muted">Join themed subforums moderated by mental health advocates and peers.</p>
+              </div>
+            </li>
+          </ul>
+          <%= link_to "Log In", new_user_session_path, class: "btn btn-primary w-100 fw-semibold" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 text-center">
+      <div class="col-lg-8">
+        <span class="badge rounded-pill bg-primary-subtle text-primary fw-semibold mb-3">Why Blue Harvest</span>
+        <h2 class="fw-bold">Designed with modern mental health in mind</h2>
+        <p class="text-muted">Support looks different for everyone. We give you flexible paths to connect—whether you want to speak up, stay reflective, or simply feel seen.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="text-primary fs-1 d-inline-block mb-3"><i class="fas fa-heartbeat"></i></span>
+            <h3 class="h5 fw-bold">Human-first experience</h3>
+            <p class="text-muted">Inclusive language, thoughtful onboarding, and verified moderators keep every interaction safe and respectful.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="text-primary fs-1 d-inline-block mb-3"><i class="fas fa-puzzle-piece"></i></span>
+            <h3 class="h5 fw-bold">Tools that work together</h3>
+            <p class="text-muted">Your journal entries, forum highlights, and live chat insights sync seamlessly to reveal patterns over time.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="text-primary fs-1 d-inline-block mb-3"><i class="fas fa-shield-heart"></i></span>
+            <h3 class="h5 fw-bold">Privacy you control</h3>
+            <p class="text-muted">Decide what you share and when. We champion confidentiality and transparent data practices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="fw-bold mb-3">Built for the routines you already have</h2>
+        <p class="text-muted mb-4">Whether you check in during a commute, after therapy, or right before bed, Blue Harvest adapts to your pace. Save milestones, download resources, and revisit conversations whenever you need a reminder that you’re moving forward.</p>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <%= link_to "Schedule a live chat", livechats_path, class: "btn btn-primary fw-semibold" %>
+          <%= link_to "Explore wellbeing topics", mental_health_path, class: "btn btn-outline-primary fw-semibold" %>
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <div class="ratio ratio-4x3 rounded-5 shadow-lg overflow-hidden">
+          <iframe class="w-100 h-100" src="https://player.vimeo.com/video/912314771?h=5b6e80288a" title="Blue Harvest overview" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-  <h1 class="d-flex justify-content-center" style="margin-bottom: 100px">Blue Harvest</h1>
-
-
-        <div class="d-flex justify-content-center">
-        <%= image_tag("logo_con_borde.png") %>
-        </div class="d-flex justify-content-center">
-</div>
+<section class="py-5 bg-dark text-white text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Join thousands of voices rewriting mental wellness together.</h2>
+    <p class="text-white-50 mb-4">Create your account in minutes and step into a space that listens back.</p>
+    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+      <%= link_to "Create a free account", new_user_registration_path, class: "btn btn-light btn-lg text-primary fw-semibold" %>
+      <%= link_to "I already have an account", new_user_session_path, class: "btn btn-outline-light btn-lg fw-semibold" %>
+    </div>
+  </div>
+</section>
